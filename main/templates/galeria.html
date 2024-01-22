@@ -1,0 +1,24 @@
+<!-- galeria.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Galería - {{ galeria.nombre }}{% endblock %}
+
+{% block content %}
+    <h2>{{ galeria.nombre }}</h2>
+
+    <!-- Imágenes -->
+    <h3>Imágenes</h3>
+    {% for imagen in imagenes %}
+        <img src="{{ imagen.imagen.url }}" alt="{{ imagen.descripcion }}">
+    {% endfor %}
+
+    <!-- Videos -->
+    <h3>Videos</h3>
+    {% for video in videos %}
+        <video controls>
+            <source src="{{ video.video.url }}" type="video/mp4">
+            Tu navegador no soporta el elemento de video.
+        </video>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,18 @@
+<!-- main/templates/index.html -->
+{% extends 'base.html' %}
+
+{% block title %}C&F JUMPERS - Inicio{% endblock %}
+
+{% load static %}  <!-- Agrega esta línea para cargar la etiqueta static -->
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+{% block banner %}
+    <img id="banner" src="{% static '08.jpg' %}" alt="Banner de la empresa">
+{% endblock %}
+
+{% block content %}
+    <!-- Contenido específico de la página de inicio -->
+    <h1>Bienvenido a C&F JUMPERS</h1>
+    <!-- Mostrar productos destacados y más contenido según sea necesario -->
+{% endblock %}

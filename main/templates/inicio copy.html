@@ -1,0 +1,40 @@
+<!-- main/templates/inicio.html -->
+{% extends 'base.html' %}
+
+{% block title %}C&F JUMPERS - Inicio{% endblock %}
+
+{% block head %}
+    {{ block.super }}
+    <!-- Agrega aquí tus enlaces a CSS, Bootstrap, etc. si los estás utilizando -->
+{% endblock %}
+
+<body>
+
+<header>
+    <h1>Inicio - C&F JUMPERS</h1>
+</header>
+
+<!-- Sección Nosotros -->
+<section id="nosotros">
+    <h2>Nosotros</h2>
+    <p>C&F JUMPERS. Aquí encontrarás todo lo que necesitas para hacer tu evento memorable.</p>
+</section>
+
+<!-- Muestra algunos productos destacados -->
+<section id="productos-destacados">
+    <h2>Productos Destacados</h2>
+    <div class="productos-destacados">
+        {% for producto in productos_destacados %}
+            <div class="producto">
+                <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+                <h3>{{ producto.nombre }}</h3>
+                <p>{{ producto.descripcion }}</p>
+                <p>Tarifa: ${{ producto.tarifa }}</p>
+                <button>¡Alquilar ahora!</button>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+</body>
+</html>

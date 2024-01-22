@@ -1,0 +1,94 @@
+<!-- main/templates/base.html -->
+
+{% load static %}  <!-- Agrega esta línea al comienzo del archivo -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}C&F JUMPERS{% endblock %}</title>
+    <!-- Agrega aquí tus enlaces a CSS, Bootstrap, etc. si los estás utilizando -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #e7d9d9;
+            color: rgb(149, 27, 219);
+            text-align: center;
+            padding: 20px;
+        }
+
+        #banner {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+        }
+
+        nav {
+            background-color: #886630;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: center;  /* Centra horizontalmente */
+        }
+
+        nav a {
+            color: rgb(15, 15, 19);
+            text-decoration: none;
+            padding: 10px;
+            margin: 10px 15px;
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        #menu-btn {
+            cursor: pointer;
+            font-size: 20px;
+            color: rgb(48, 20, 230);
+            position: fixed;
+            top: 240px; /* Ajusta la posición vertical según sea necesario */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+        }el ancho del botón */
+
+    </style>
+</head>
+<body>
+
+<header>
+    <img id="banner" src="{% static '10.jpg' %}" alt="Banner de la empresa">
+</header>
+
+<nav>
+    <a href="{% url 'index' %}">Inicio</a>
+    <a href="{% url 'catalogo' %}">Catálogo</a>
+    <a href="{% url 'solicitud_alquiler' %}">Solicitud</a>
+    <a href="{% url 'galeria' %}">Galería</a>  <!-- Enlace a la galería -->
+    <!-- Agrega más enlaces según sea necesario -->
+</nav>
+
+<span id="menu-btn">&#9776; Menú</span>
+
+<div id="content">
+    {% block content %}{% endblock %}
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var menuBtn = document.getElementById('menu-btn');
+        var nav = document.querySelector('nav');
+
+        menuBtn.addEventListener('click', function () {
+            nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
+        });
+    });
+</script>
+
+</body>
+</html>
