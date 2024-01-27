@@ -3,16 +3,23 @@
 
 {% block title %}C&F JUMPERS - Inicio{% endblock %}
 
-{% load static %}  <!-- Agrega esta línea para cargar la etiqueta static -->
-
-<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-
-{% block banner %}
-    <img id="banner" src="{% static '08.jpg' %}" alt="Banner de la empresa">
-{% endblock %}
-
 {% block content %}
     <!-- Contenido específico de la página de inicio -->
-    <h1>Bienvenido a C&F JUMPERS</h1>
-    <!-- Mostrar productos destacados y más contenido según sea necesario -->
+    <h1 style="text-align: center; color: #573d7a; font-family: 'Arial', sans-serif;">Bienvenido a C&F JUMPERS</h1>
+    
+    <div style="margin: 20px; text-align: center;">
+        <p style="font-size: 18px; color: #333;">Somos tu mejor opción para eventos especiales. Ofrecemos renta de sillas, mesas, jumpers inflables y más.</p>
+    </div>
+    
+    <h2 style="text-align: center; color: #573d7a; margin-top: 20px;">Nuestros Servicios</h2>
+    <ul style="list-style: none; padding: 0; text-align: center;">
+        <li style="font-size: 16px; color: #333; margin-bottom: 10px;">Renta de sillas y mesas para eventos</li>
+        <li style="font-size: 16px; color: #333; margin-bottom: 10px;">Jumpers inflables para fiestas infantiles</li>
+        <!-- Agrega más servicios según sea necesario -->
+    </ul>
+    
+    <h2 style="text-align: center; color: #573d7a; margin-top: 20px;">Eventos Destacados</h2>
+    <p style="font-size: 18px; color: #333; text-align: center;">Explora nuestra galería para ver fotos de eventos especiales que hemos ayudado a hacer inolvidables.</p>
+    
+    <!-- Puedes ajustar estilos y colores según tus preferencias -->
 {% endblock %}

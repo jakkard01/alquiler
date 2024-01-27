@@ -1,26 +1,39 @@
 <!-- main/templates/base.html -->
-
-{% load static %}  <!-- Agrega esta línea al comienzo del archivo -->
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}C&F JUMPERS{% endblock %}</title>
-    <!-- Agrega aquí tus enlaces a CSS, Bootstrap, etc. si los estás utilizando -->
+    
+    {% block styles %}
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    {% endblock %}
+    
+    <!-- Otros enlaces a hojas de estilo, scripts, etc. -->
+    
     <style>
+        /* Tus estilos comunes aquí */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #c5c1c1; /* Cambia este color según tus preferencias */
         }
 
         header {
-            background-color: #e7d9d9;
+            background-color: #573d7a;
             color: rgb(149, 27, 219);
             text-align: center;
             padding: 20px;
+            transition: margin-top 0.5s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        header.show-menu {
+            margin-top: 60px;
         }
 
         #banner {
@@ -30,20 +43,28 @@
         }
 
         nav {
-            background-color: #886630;
-            padding: 20px;
+            display: none;
+            position: absolute;
+            top: 80px;
+            width: 100%;
+            background-color: #573d7a;
             text-align: center;
-            display: flex;
-            justify-content: center;  /* Centra horizontalmente */
+            padding: 20px;
+            animation: slideDown 0.5s ease;
+            margin-bottom: 20px;
         }
 
         nav a {
             color: rgb(15, 15, 19);
             text-decoration: none;
             padding: 10px;
-            margin: 10px 15px;
+            margin: 10px;
             display: inline-block;
-            margin: 0 10px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        nav a:hover {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
 
         #menu-btn {
@@ -51,12 +72,46 @@
             font-size: 20px;
             color: rgb(48, 20, 230);
             position: fixed;
-            top: 240px; /* Ajusta la posición vertical según sea necesario */
+            top: 240px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 1000;
-        }el ancho del botón */
+            background-color: rgb(48, 20, 230);
+            color: #fff;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
 
+        #menu-btn:hover {
+            background-color: #573d7a;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media only screen and (max-width: 600px) {
+            #menu-btn {
+                display: block;
+            }
+
+            nav {
+                display: none;
+            }
+        }
+
+        #content {
+            margin-top: 90px;
+        }
     </style>
 </head>
 <body>
@@ -69,7 +124,7 @@
     <a href="{% url 'index' %}">Inicio</a>
     <a href="{% url 'catalogo' %}">Catálogo</a>
     <a href="{% url 'solicitud_alquiler' %}">Solicitud</a>
-    <a href="{% url 'galeria' %}">Galería</a>  <!-- Enlace a la galería -->
+    <a href="{% url 'galeria' %}">Galería</a>
     <!-- Agrega más enlaces según sea necesario -->
 </nav>
 
@@ -79,12 +134,30 @@
     {% block content %}{% endblock %}
 </div>
 
+<footer>
+    <p>© 2024 C&F JUMPERS. Todos los derechos reservados.</p>
+</footer>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var menuBtn = document.getElementById('menu-btn');
         var nav = document.querySelector('nav');
+        var header = document.querySelector('header');
 
         menuBtn.addEventListener('click', function () {
+            var rect = menuBtn.getBoundingClientRect();
+            var topPosition = rect.bottom + window.scrollY;
+
+            if (nav.style.display === 'block') {
+                nav.style.animation = 'none';
+                nav.offsetHeight;
+                header.classList.remove('show-menu');
+            } else {
+                nav.style.animation = 'slideDown 0.5s ease';
+                nav.style.top = topPosition + 'px';
+                header.classList.add('show-menu');
+            }
+
             nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
         });
     });

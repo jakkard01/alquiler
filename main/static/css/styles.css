@@ -1,12 +1,14 @@
 /* static/css/styles.css */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #c5c1c1; /* Cambia este color según tus preferencias */
 }
 
 header {
-    background-color: #333;
+    background-color: #573d7a; /* Cambia el color del encabezado */
     color: white;
     text-align: center;
     padding: 20px;
@@ -18,4 +20,37 @@ header {
     object-fit: cover;
 }
 
-/* Agrega más estilos según sea necesario */
+footer {
+    background-color: #573d7a; /* Cambia el color del pie de página */
+    padding: 20px;
+    text-align: center;
+    color: #fff; /* Cambia el color del texto del pie de página */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan si no hay suficiente espacio */
+}
+
+.contact-info,
+.social-media {
+    flex: 1;
+    text-align: left; /* Alinea el texto a la izquierda */
+}
+
+.contact-info p {
+    margin: 5px 0; /* Añade márgenes alrededor de los párrafos */
+}
+
+.social-media a {
+    display: block;
+    margin-top: 10px;
+    color: #fff; /* Cambia el color de los enlaces de redes sociales */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.social-media a:hover {
+    color: #886630;
+}
