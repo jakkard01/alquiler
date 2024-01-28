@@ -143,6 +143,11 @@
         var menuBtn = document.getElementById('menu-btn');
         var nav = document.querySelector('nav');
         var header = document.querySelector('header');
+        var banner = document.getElementById('banner');
+        
+        // Lista de imágenes para el banner
+        var images = ['10.jpg', '05.jpg', '09.jpg'];
+        var currentIndex = 0;
 
         menuBtn.addEventListener('click', function () {
             var rect = menuBtn.getBoundingClientRect();
@@ -160,6 +165,16 @@
 
             nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
         });
+
+        // Cambiar la imagen del banner dinámicamente
+        function changeBanner() {
+            banner.src = "{% static '' %}" + images[currentIndex];
+            currentIndex = (currentIndex + 1) % images.length;
+            setTimeout(changeBanner, 5000); // Cambia cada 5 segundos
+        }
+
+        // Iniciar el cambio de imagen
+        changeBanner();
     });
 </script>
 
